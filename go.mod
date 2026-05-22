@@ -1,3 +1,3 @@
-module kranth.com/sdk
+module github.com/VYLTH/kranth-go
 
 go 1.21
