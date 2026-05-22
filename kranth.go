@@ -368,12 +368,20 @@ func (s *SimsService) Stream(ctx context.Context, simID string) <-chan StreamFra
 	out := make(chan StreamFrame, 8)
 	go func() {
 		defer close(out)
-		req, err := http.NewRequestWithContext(ctx, "GET", s.c.BaseURL+"/v1/sims/"+url.PathEscape(simID)+"/events", nil)
+		// Mint a short-lived stream token (EventSource can't send Bearer headers).
+		var tokenResp struct {
+			Token string `json:"token"`
+		}
+		if err := s.c.request(ctx, "POST", "/v1/sims/"+url.PathEscape(simID)+"/stream-token", nil, &tokenResp, ""); err != nil {
+			out <- StreamFrame{Err: err}
+			return
+		}
+		eventsURL := s.c.BaseURL + "/v1/sims/" + url.PathEscape(simID) + "/events?token=" + url.QueryEscape(tokenResp.Token)
+		req, err := http.NewRequestWithContext(ctx, "GET", eventsURL, nil)
 		if err != nil {
 			out <- StreamFrame{Err: err}
 			return
 		}
-		req.Header.Set("Authorization", "Bearer "+s.c.APIKey)
 		req.Header.Set("Accept", "text/event-stream")
 		req.Header.Set("User-Agent", userAgent)
 		resp, err := s.c.HTTP.Do(req)
