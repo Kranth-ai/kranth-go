@@ -39,7 +39,7 @@ import (
 const Version = "0.1.0"
 
 const (
-	DefaultBaseURL = "https://api.kranth.com"
+	DefaultBaseURL = "https://api.kranth.ai"
 	userAgent      = "kranth-go/" + Version
 )
 

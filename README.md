@@ -77,7 +77,7 @@ if _, err := client.Sims.Create(ctx, req); err != nil {
 ```go
 client := kranth.New(
     "kr_live_…",
-    kranth.WithBaseURL("https://api.kranth.com"),
+    kranth.WithBaseURL("https://api.kranth.ai"),
     kranth.WithHTTPClient(&http.Client{Timeout: 60 * time.Second}),
 )
 ```
