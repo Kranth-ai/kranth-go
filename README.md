@@ -1,7 +1,7 @@
 # Kranth — Go SDK
 
 ```bash
-go get github.com/VYLTH/kranth-go
+go get github.com/Kranth-ai/kranth-go
 ```
 
 ```go
@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/VYLTH/kranth-go"
+	"github.com/Kranth-ai/kranth-go"
 )
 
 func main() {
