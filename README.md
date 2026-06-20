@@ -53,6 +53,8 @@ func main() {
 - `client.Sims.Stream(ctx, simID)` — `<-chan StreamFrame`
 - `client.Sims.Cancel(ctx, simID)`
 - `client.Sims.Export(ctx, simID)`
+- `client.Recon.Create(ctx, kranth.CreateReconRequest{...})` / `.Get` / `.List` / `.Tiers` / `.Export` / `.Stream` — web-grounded research swarm
+- `client.Debates.Create(ctx, kranth.CreateDebateRequest{...})` / `.Get` / `.List` / `.Turns` / `.SetPublic` / `.Cancel` / `.Export` / `.Stream` — adversarial panel
 - `client.APIKeys.Create(ctx, name, env)` / `.List(ctx)` / `.Revoke(ctx, id)`
 - `client.Models.List(ctx)`
 - `client.Billing.Usage(ctx)` / `.CheckoutURL(ctx, params)` / `.PortalURL(ctx, returnURL)`
