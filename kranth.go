@@ -63,7 +63,7 @@ import (
 )
 
 // Version of the SDK — kept in sync with the git tag at release time.
-const Version = "0.2.0"
+const Version = "0.3.0"
 
 const (
 	DefaultBaseURL = "https://api.kranth.ai"
@@ -191,11 +191,13 @@ type SimSummary struct {
 }
 
 type CreateSimRequest struct {
-	IdeaText       string `json:"idea_text"`
-	PersonaCount   uint32 `json:"persona_count"`
-	ModelID        string `json:"model_id"`
-	TrainingOptIn  *bool  `json:"training_opt_in,omitempty"`
-	IdempotencyKey string `json:"-"`
+	IdeaText       string   `json:"idea_text"`
+	PersonaCount   uint32   `json:"persona_count"`
+	ModelID        string   `json:"model_id"`
+	TrainingOptIn  *bool    `json:"training_opt_in,omitempty"`
+	ConfidenceMode *bool    `json:"confidence_mode,omitempty"`
+	BiasAxes       []string `json:"bias_axes,omitempty"`
+	IdempotencyKey string   `json:"-"`
 }
 
 type CreateSimResponse struct {
